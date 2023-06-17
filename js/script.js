@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  $("#cpf").inputmask("999.999.999-99")
-})
+  $("#cpf").inputmask("999.999.999-99");
+});
 
 
 function validateCPF() {
@@ -9,26 +9,26 @@ function validateCPF() {
   const cpf = clearFormatting(formattedCPF);
 
   if (cpf.length !== 11) {
-    return showResult("CPF deve conter 11 dígitos", "firebrick");
+    return showResult("CPF deve conter 11 dígitos", "#FF0000");
   }
 
   if (checkRepeatedDigits(cpf)) {
-    return showResult("CPF não pode conter dígitos repetidos", "firebrick");
+    return showResult("CPF não pode conter dígitos repetidos", "#FF0000");
   }
 
   const firstDigit = calculateCheckDigit(cpf, 1);
 
   if (!firstDigit) {
-    return showResult(`CPF inválido - ${formattedCPF}`, "firebrick");
+    return showResult(`CPF inválido`, "#FF0000");
   }
 
   const secondDigit = calculateCheckDigit(cpf, 2);
 
   if (!secondDigit) {
-    return showResult(`CPF inválido - ${formattedCPF}`, "firebrick");
+    return showResult(`CPF inválido - ${formattedCPF}`, "#FF0000");
   }
 
-  showResult(`CPF Válido - ${formattedCPF}`, "#0B420E")
+  showResult(`CPF Válido`, "#008000");
 }
 
 function calculateCheckDigit(cpf, position) {
@@ -62,5 +62,5 @@ function showResult(text, color) {
 }
 
 function checkRepeatedDigits(cpf) {
-  return cpf.split("").every((digit) => digit === cpf[0])
+  return cpf.split("").every((digit) => digit === cpf[0]);
 }
